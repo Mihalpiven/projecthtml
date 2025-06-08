@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Confused Student Phone's Website</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h1>Welcome to the Confused Student Phone's Website</h1>
+    <h2>Remember to stay calm and enjoy the ride!</h2>
+    <img src="{% static 'calm.png' %}" alt="Logo of the Calm app", class="center-image">
+    
+    <div class="diagonal-container">
+    <a href="{% url 'query_results' %}" class="diagonal-link">Go to Query Results Page</a>
+    <a href="{% url 'add_new_app' %}" class="diagonal-link">Go to Add New App Page</a>
+    <a href="{% url 'install_app' %}" class="diagonal-link">Go to Install App Page</a>
+    <a href="{% url 'delete_app' %}" class="diagonal-link">Go to Delete App Page</a>
+</div>
+
+</body>
+</html>

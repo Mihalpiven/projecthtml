@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <meta charset="UTF-8">
+    <title>Query Results</title>
+    <style>
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        caption {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>Welcome to the Query Results Page!</h1>
+
+<!-- Results from Query 1 -->
+<table>
+    <caption>Results from Query 1</caption>
+    <tr>
+        <th>App Name</th>
+        <th>Avg Grade</th>
+    </tr>
+    {% for result in results.query1 %}
+    <tr>
+        <td>{{ result.aName }}</td>
+        <td>{{ result.grade }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="2">No results found for Query 1.</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<!-- Results from Query 2 -->
+<table>
+    <caption>Results from Query 2</caption>
+    <tr>
+        <th>Contact Name</th>
+        <th>Contact Phone</th>
+        <th>Leading Apps Num</th>
+    </tr>
+    {% for result in results.query2 %}
+    <tr>
+        <td>{{ result.name }}</td>
+        <td>{{ result.phone }}</td>
+        <td>{{ result.apps_num }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="3">No results found for Query 2.</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<!-- Results from Query 3 -->
+<table>
+    <caption>Results from Query 3</caption>
+    <tr>
+        <th>City</th>
+        <th>App Name</th>
+        <th>Installations Num</th>
+    </tr>
+    {% for result in results.query3 %}
+    <tr>
+        <td>{{ result.city }}</td>
+        <td>{{ result.name }}</td>
+        <td>{{ result.installations_num }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="3">No results found for Query 3.</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<div class="diagonal-container">
+    <a href="{% url 'index' %}" class="diagonal-link">Go to Home Page</a>
+    <a href="{% url 'add_new_app' %}" class="diagonal-link">Go to Add New App Page</a>
+    <a href="{% url 'install_app' %}" class="diagonal-link">Go to Install App Page</a>
+    <a href="{% url 'delete_app' %}" class="diagonal-link">Go to Delete App Page</a>
+</div>
+
+</body>
+</html>

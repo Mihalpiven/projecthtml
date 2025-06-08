@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <meta charset="UTF-8">
+    <title>Delete App</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            justify-content: center;
+            margin: 50px auto;
+            width: 40%;
+        }
+        
+        input[type="text"], select {
+            width: 80%; /* Make fields bigger */
+            padding: 10px; /* Add padding */
+            margin: 10px 0; /* Add space between fields */
+            font-size: 1.2em; /* Increase font size */
+            border: 2px solid #ccc; /* Add border */
+            border-radius: 5px; /* Rounded corners */
+        }
+
+        /* Style submit button */
+        input[type="submit"] {
+            width: 50%; /* Button width */
+            padding: 10px;
+            font-size: 1.2em;
+            background-color: #007BFF; /* Blue background */
+            color: white; /* White text */
+            border: none; /* Remove border */
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+<h1>Remove App</h1>
+
+<form method="POST">
+<p> Available Space: {{ available_space }} MB</p>
+{% csrf_token %}
+App Name:
+<br>
+    <select id="installed_apps" name="installed_apps" size="5" required>
+        {% for app in installed_apps %}
+        <option value="{{ app.aname }}">{{ app.aname }}</option>
+        {% endfor %}
+</select>
+<br><br>
+<button type = "sumbit">Submit</button>
+<!--<input type="submit">-->
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+
+</form>
+
+<div class="diagonal-container">
+    <a href="{% url 'index' %}" class="diagonal-link">Go to Home Page</a>
+    <a href="{% url 'query_results' %}" class="diagonal-link">Go to Query Results Page</a>
+    <a href="{% url 'add_new_app' %}" class="diagonal-link">Go to Add New App Page</a>
+    <a href="{% url 'install_app' %}" class="diagonal-link">Go to Install App Page</a>
+</div>
+</body>
+</html>

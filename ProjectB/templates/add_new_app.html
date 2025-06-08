@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <meta charset="UTF-8">
+    <title>Add New App</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            justify-content: center;
+            margin: 50px auto;
+            width: 40%;
+        }
+        
+        input[type="text"], select {
+            width: 80%; /* Make fields bigger */
+            padding: 10px; /* Add padding */
+            margin: 10px 0; /* Add space between fields */
+            font-size: 1.2em; /* Increase font size */
+            border: 2px solid #ccc; /* Add border */
+            border-radius: 5px; /* Rounded corners */
+        }
+
+        /* Style submit button */
+        input[type="submit"] {
+            width: 50%; /* Button width */
+            padding: 10px;
+            font-size: 1.2em;
+            background-color: #007BFF; /* Blue background */
+            color: white; /* White text */
+            border: none; /* Remove border */
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+<h1>Welcome to the Add New App Page!</h1>
+
+<form method="POST">
+    {% csrf_token %} <!--have to add it bc bar said so-->
+	App Name: <input type="text" name="app_name" required> <br>
+	<br>
+    App Category:
+    <select id="app_category" name="app_category" size="5" required>
+        {% for category in categories %}
+            <option value="{{ category }}">{{ category }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    App Size:
+    <input type="text" name="app_size" required> <br>
+    <input type="submit">
+
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+
+</form>
+
+
+<div class="diagonal-container">
+    <a href="{% url 'index' %}" class="diagonal-link">Go to Home Page</a>
+    <a href="{% url 'query_results' %}" class="diagonal-link">Go to Query Results Page</a>
+    <a href="{% url 'install_app' %}" class="diagonal-link">Go to Install App Page</a>
+    <a href="{% url 'delete_app' %}" class="diagonal-link">Go to Delete App Page</a>
+</div>
+</body>
+</html>
